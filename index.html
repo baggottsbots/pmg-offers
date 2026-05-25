@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/pmg-offers/">
+<!-- BASE:END -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<!-- SEO Meta Tags -->
+<title>PayMeGPT &amp;middot; Every Way to Get Paid</title>
+<meta property="og:title" content="PayMeGPT &amp;middot; Every Way to Get Paid" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PayMeGPT &amp;middot; Every Way to Get Paid" />
+<!-- End SEO Meta Tags -->
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=4297');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='xjhWxtRV';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    var __pLoc=(document.documentElement.lang||navigator.language||'en');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,locale:__pLoc,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||('Thank you for purchasing '+pName+'.');
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-pay-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var pBtn=document.getElementById('lp-pay-success-btn');
+      if(pBtn){pBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="brand">PayMe<span>GPT</span></div>
+    <div class="kicker">Live Build Session</div>
+    <h1>Every Way to <span class="accent">Get Paid</span> With AI</h1>
+    <p>12 things your customers can build on PayMeGPT to earn or save money. One platform. No code required.</p>
+  </header>
+
+  <div class="section-head">
+    <div class="tag">Part One</div>
+    <h2>One-Offs &mdash; <span class="accent">Cash Today</span></h2>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Omnichannel <span class="accent">AI Agent</span></h3>
+      <div class="price">$1.5k&ndash;$10k</div>
+    </div>
+    <p>Build one agent, deploy it everywhere at once: web chat, SMS, Facebook, Instagram, and live phone calls. VoiceFlow and Botpress make you rebuild per channel. PMG ships it native.</p>
+    <div class="source"><b>Source:</b> Fiverr &amp; Elfsight chatbot pricing guides, 2026</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Multi-Page <span class="accent">Website</span></h3>
+      <div class="price">$4k&ndash;$8k</div>
+    </div>
+    <p>A real multi-page site from the Coding Agent. Built-in server-side keys for LLMs, Google Sheets, and Stripe mean it works out of the box. No client API setup, no hosting middleman.</p>
+    <div class="source"><b>Source:</b> Jim.com &amp; Flamingo Agency website cost guides, 2026</div>
+  </div>
+
+  <div class="card">
+    <span class="badge">Signature Build</span>
+    <div class="card-top">
+      <h3>Website + <span class="accent">Custom CRM</span></h3>
+      <div class="price">$6k&ndash;$13k</div>
+    </div>
+    <p>Customer-facing site pushes every lead into Google Sheets via Flow webhook. Then a second build reads that same sheet and renders a custom CRM. Two deliverables, one data source, one invoice.</p>
+    <div class="source"><b>Source:</b> Hammani Tech, website + CRM integration add-on, 2026</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Voice <span class="accent">Phone Agent</span></h3>
+      <div class="price">$1k&ndash;$5k</div>
+    </div>
+    <p>An AI agent that answers calls, books appointments, and qualifies leads using OpenAI, Grok realtime, or ElevenLabs voice. Replaces a receptionist or answering service.</p>
+    <div class="source"><b>Source:</b> Aircall AI voice agent cost breakdown, 2026</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Lead-Gen <span class="accent">Funnel</span></h3>
+      <div class="price">$2k&ndash;$6k</div>
+    </div>
+    <p>Landing page, contact form, flow, and pipeline wired end to end. Leads land, route, and get tracked automatically. Hand it off complete.</p>
+    <div class="source"><b>Source:</b> Hammani Tech small business website cost guide, 2026</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Loyalty / Event <span class="accent">Wallet Pass</span></h3>
+      <div class="price">$300&ndash;$2k</div>
+    </div>
+    <p>Digital punch cards, memberships, or scannable event tickets that live in Apple Wallet. Custom apps cost $15k+ to build. PMG ships it in an afternoon.</p>
+    <div class="source"><b>Source:</b> Kartle digital loyalty program cost guide, 2026</div>
+  </div>
+
+  <div class="section-head">
+    <div class="tag">Part Two</div>
+    <h2>Recurring &mdash; <span class="accent">Build Your MRR</span></h2>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Managed <span class="accent">AI Agent</span></h3>
+      <div class="price">$160&ndash;$600/mo</div>
+    </div>
+    <p>Host and tune a client's agent across chat, SMS, social, and phone. As they add channels or change scripts, you maintain it. The retainer grows as they grow.</p>
+    <div class="source"><b>Source:</b> Elfsight chatbot ongoing cost guide, 2026</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Auto-Comment <span class="accent">Service</span></h3>
+      <div class="price">$300&ndash;$1k/mo</div>
+    </div>
+    <p>Every comment on a client's Facebook and Instagram posts gets an instant AI reply that captures the lead. Runs 24/7. Scales with their ad spend.</p>
+    <div class="source"><b>Source:</b> LYFE Marketing social media management pricing, 2026</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Email + SMS <span class="accent">Campaigns</span></h3>
+      <div class="price">$500&ndash;$2k/mo</div>
+    </div>
+    <p>Run recurring Broadcast Hub campaigns: weekly newsletters, promo blasts, SMS offers. You handle copy, scheduling, and list management.</p>
+    <div class="source"><b>Source:</b> Nutshell email &amp; MessageIQ SMS pricing guides, 2026</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Social <span class="accent">Content</span></h3>
+      <div class="price">$500&ndash;$2k/mo</div>
+    </div>
+    <p>AI Content Generator plus Social Poster delivering scheduled posts every week across all their accounts. A predictable monthly deliverable.</p>
+    <div class="source"><b>Source:</b> WebFX social media management pricing, 2026</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h3>Loyalty / Booking <span class="accent">Management</span></h3>
+      <div class="price">$100&ndash;$400/mo</div>
+    </div>
+    <p>Issue and update Wallet Passes, run point campaigns, maintain booking pages and reminder flows. The program never stops, so neither does the billing.</p>
+    <div class="source"><b>Source:</b> Revio digital loyalty program cost guide, 2026</div>
+  </div>
+
+  <div class="card">
+    <span class="badge">Highest Ceiling</span>
+    <div class="card-top">
+      <h3>White-Label <span class="accent">PMG</span></h3>
+      <div class="price">$97&ndash;$497/mo</div>
+    </div>
+    <p>Repackage the entire platform under your own brand and charge clients a monthly subscription. You stop selling builds and start selling a SaaS.</p>
+    <div class="source"><b>Source:</b> PMG estimate vs. stacked competitor tool costs, 2026</div>
+  </div>
+
+  <div class="close">
+    <h2>One Platform.<br><span class="accent">No Code Required.</span></h2>
+    <p>Every offer on this list is built with the tools already in your PayMeGPT dashboard.</p>
+    <a class="cta" href="https://paymegpt.com">Join the PMG Fam</a>
+  </div>
+
+  <div class="foot">PayMeGPT &middot; paymegpt.com</div>
+
+</div>
+</body>
+</html>
